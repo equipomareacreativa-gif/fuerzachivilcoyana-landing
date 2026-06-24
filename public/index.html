@@ -203,8 +203,15 @@
       display:flex;align-items:center;justify-content:center;
       font-size:1.35rem;font-weight:800;color:var(--blanco);
     }
+    .mphoto{
+      width:110px;height:110px;border-radius:50%;
+      object-fit:cover;object-position:top;
+      margin:0 auto 1rem;display:block;
+      border:3px solid var(--naranja);
+    }
     .mname{font-weight:700;color:var(--blanco);font-size:0.95rem;margin-bottom:0.3rem;}
     .mrole{font-size:0.73rem;font-weight:600;color:var(--naranja);text-transform:uppercase;letter-spacing:0.08em;}
+    .mbio{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.6;margin-top:0.7rem;font-weight:300;}
 
     /* CONTACTO */
     #contacto{background:var(--gris-f);}
@@ -339,8 +346,8 @@
       <div>
         <p class="seye">Quiénes somos</p>
         <h2 class="stit">Nacimos en el barrio,<br>pensamos la ciudad.</h2>
-        <p class="sdesc">Fuerza Chivilcoyana es un espacio político independiente formado por vecinos, profesionales, trabajadores y dirigentes que creemos que Chivilcoy tiene todo para crecer — y que ese crecimiento tiene que ser justo, ordenado y participativo.</p>
-        <p class="sdesc" style="margin-top:1rem">No somos una lista ni una fórmula electoral. Somos una construcción colectiva que apuesta al largo plazo, con propuestas reales y voluntad de diálogo con todos los sectores.</p>
+        <p class="sdesc">Fuerza Chivilcoyana es un espacio vecinalista independiente fundado el 22 de marzo de 2025, con impronta local, vocación de gobierno e idoneidad técnica. Nos alejamos de los partidos tradicionales para construir desde el territorio.</p>
+        <p class="sdesc" style="margin-top:1rem">No somos una lista ni una fórmula electoral. Somos una construcción colectiva que apuesta al largo plazo — "Donde hay que estar, estamos. Con los que enseñan, con los que cuidan, con los que esperan que algo cambie de una vez por todas."</p>
         <a href="#contacto" class="btn-p" style="margin-top:2rem;display:inline-block">Sumarte al espacio</a>
       </div>
       <div class="valores">
@@ -392,8 +399,18 @@
     <h2 class="stit">El equipo.</h2>
     <p class="sdesc">Mujeres y hombres de Chivilcoy, con trayectoria en distintos sectores de la comunidad, unidos por el mismo compromiso.</p>
     <div class="egrid">
-      <div class="mcard"><div class="mav">JF</div><div class="mname">José Ferro</div><div class="mrole">Presidente del espacio</div></div>
-      <div class="mcard"><div class="mav">RG</div><div class="mname">Rosario Galland</div><div class="mrole">Concejal</div></div>
+      <div class="mcard">
+        <img class="mphoto" src="/images/jose-ferro.jpeg" alt="José Ferro"/>
+        <div class="mname">José Ferro</div>
+        <div class="mrole">Presidente del espacio</div>
+        <p class="mbio">Médico clínico y ex concejal de Chivilcoy (2017–2025). Fundador de Fuerza Chivilcoyana, espacio vecinalista independiente nacido en marzo de 2025.</p>
+      </div>
+      <div class="mcard">
+        <img class="mphoto" src="/images/rosario-galland.jpeg" alt="Rosario Galland"/>
+        <div class="mname">Rosario Galland</div>
+        <div class="mrole">Concejal</div>
+        <p class="mbio">Encabezó la Lista 991 de Fuerza Chivilcoyana en las elecciones del 7 de septiembre de 2025. Concejal electa de Chivilcoy.</p>
+      </div>
     </div>
   </div>
 </section>
