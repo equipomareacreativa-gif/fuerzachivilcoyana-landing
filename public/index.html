@@ -568,11 +568,11 @@
     <h2 class="stit">¿Querés ser parte?</h2>
     <p class="sdesc">Si compartís nuestros valores y querés contribuir, escribinos. Toda participación suma.</p>
     <div class="cgrid">
-      <form onsubmit="enviar(event)">
-        <div class="fg"><label>Nombre completo</label><input type="text" placeholder="Tu nombre" required/></div>
-        <div class="fg"><label>Correo electrónico</label><input type="email" placeholder="tu@email.com" required/></div>
+      <form id="contactForm" onsubmit="enviar(event)">
+        <div class="fg"><label>Nombre completo</label><input id="f-nombre" type="text" placeholder="Tu nombre" required/></div>
+        <div class="fg"><label>Correo electrónico</label><input id="f-email" type="email" placeholder="tu@email.com" required/></div>
         <div class="fg"><label>¿Cómo querés participar?</label>
-          <select>
+          <select id="f-participacion">
             <option value="">Seleccioná una opción</option>
             <option>Voluntario/a en barrio</option>
             <option>Apoyo en comunicación</option>
@@ -581,7 +581,7 @@
             <option>Otro</option>
           </select>
         </div>
-        <div class="fg"><label>Mensaje</label><textarea placeholder="Contanos un poco sobre vos..."></textarea></div>
+        <div class="fg"><label>Mensaje</label><textarea id="f-mensaje" placeholder="Contanos un poco sobre vos..."></textarea></div>
         <button type="submit" class="btn-p" style="width:100%">Enviar mensaje</button>
         <div id="ok" style="display:none;margin-top:1rem;padding:0.9rem;background:#d4f0d0;color:#1a5c2a;font-weight:600;border-radius:4px;text-align:center;">✓ ¡Gracias! Nos ponemos en contacto pronto.</div>
       </form>
@@ -610,10 +610,36 @@ function filtrar(cat,btn){
     c.classList.toggle('vis', cat==='todo'||c.dataset.cat===cat);
   });
 }
-function enviar(e){
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwAoxSi6jnxwIICkvGonL4Ihu_Lhig_kk_T9o9es9YtRUUM9rMQJn8bpZ5IYLX8D0G5xQ/exec';
+
+async function enviar(e){
   e.preventDefault();
-  document.getElementById('ok').style.display='block';
-  e.target.reset();
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  const payload = {
+    nombre:       document.getElementById('f-nombre').value,
+    email:        document.getElementById('f-email').value,
+    participacion:document.getElementById('f-participacion').value,
+    mensaje:      document.getElementById('f-mensaje').value
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('ok').style.display = 'block';
+    e.target.reset();
+  } catch(err) {
+    alert('Hubo un error al enviar. Por favor escribinos a fuerzachivilcoyana.ch@gmail.com');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enviar mensaje';
+  }
 }
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
